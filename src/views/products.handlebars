@@ -1,0 +1,76 @@
+{{#if message}}
+<div style="color: green;">{{message}}</div>
+{{/if}}
+<h1>Products</h1>
+<button id="goToCartBtn">Go to Cart</button>
+
+
+<form action="/products" method="GET">
+    <label for="category">Category:</label>
+    <select name="category" id="category">
+        <option value="">All</option>
+        <option value="Electronics">Electronics</option>
+        <option value="Productos Básicos">Productos Básicos</option>
+        <option value="Toys">Toys</option>
+        <option value="Food">Food</option>
+        <option value="Clothing">Clothing</option>
+    </select>
+
+    <label for="available">Available:</label>
+    <input type="checkbox" name="available" id="available" value="true">
+
+    <label for="limit">Limit: </label>
+    <input type="number" name="limit" id="limit" value="{{currentLimit}}" min="1" max="100">
+
+    <label for="sortByPrice">Sort By Price:</label>
+    <select name="sortByPrice" id="sortByPrice">
+        <option value="">None</option>
+        <option value="asc">Low to High</option>
+        <option value="desc">High to Low</option>
+    </select>
+
+    <button type="submit">Apply Filters</button>
+</form>
+{{#if (eq session.user.role "admin")}}
+<div id="productosContainerHome">
+    {{#each productsData.payload}}
+    <div class="productCard">
+        <h2>{{this.title}}</h2>
+        <p>Price: ${{this.price}}</p>
+        <p>Stock: {{this.stock}}</p>
+        <p>{{this.description}}</p>
+        <p>{{this.category}}</p>
+    </div>
+    {{/each}}
+</div>
+{{else}}
+<div id="productosContainerHome">
+    {{#each productsData.payload}}
+    <div class="productCard">
+        <h2>{{this.title}}</h2>
+        <p>Price: ${{this.price}}</p>
+        <p>Stock: {{this.stock}}</p>
+        <p>{{this.description}}</p>
+        <p>{{this.category}}</p>
+        <button class="addToCartBtn" data-product-id="{{this._id}}">Add to Cart</button>
+    </div>
+    {{/each}}
+</div>
+{{/if}}
+
+<div>
+    {{#if productsData.hasPrevPage}}
+    <a href="?page={{productsData.prevPage}}&limit={{currentLimit}}">Previous</a>
+    {{/if}}
+
+    Page {{productsData.page}} of {{productsData.totalPages}}
+
+    {{#if productsData.hasNextPage}}
+    <a href="?page={{productsData.nextPage}}&limit={{currentLimit}}">Next</a>
+    {{/if}}
+</div>
+
+<script>
+    window.cartId = '{{session.user.cartId}}';
+</script>
+<script src="js/productsScripts.js"></script>

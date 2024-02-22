@@ -1,0 +1,14 @@
+<h1>CHAT:</h1>
+<div id="userData" data-user-name="{{session.user.first_name}}" data-user-email="{{session.user.email}}"></div>
+<div id="chatContainer">
+    <div id="chatBox" class="chatBox">
+    </div>
+    <button id="joinChatBtn" onclick="setUserName()">Join chat</button>
+    <div id="messageForm" style="display: none;">
+        <input type="text" id="messageInput" placeholder="Write message..." />
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="js/chatScripts.js"></script>

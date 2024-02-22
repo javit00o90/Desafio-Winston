@@ -1,0 +1,41 @@
+{{#if error}}
+<h1>Error</h1>
+<p class="errorMsj">{{error}}</p>
+{{#each productsWithInsufficientStock}}
+<li>Product Title: {{this.productTitle}}, Requested Quantity: {{this.requestedQuantity}}, Available Stock:
+    {{this.availableStock}}</li>
+{{/each}}
+{{else}}
+<h1>Purchase Details</h1>
+<p class="successMsj">{{message}}</p>
+{{#if productsWithInsufficientStock.length}}
+<h2>Products with Insufficient Stock</h2>
+<ul>
+    {{#each productsWithInsufficientStock}}
+    <li>Product Title: {{this.productTitle}}, Requested Quantity: {{this.requestedQuantity}}, Available Stock:
+        {{this.availableStock}}</li>
+    {{/each}}
+</ul>
+{{/if}}
+<div class="ticket">
+    <div class="ticket-info">
+        <span>Code:</span>
+        <div class="ticket-code">{{ticket.code}}</div>
+    </div>
+    <div class="ticket-info">
+        <span>Amount:</span>
+        <div class="ticket-amount">${{ticket.amount}}</div>
+    </div>
+    <div class="ticket-info">
+        <span>Purchaser:</span>
+        <div class="ticket-purchaser">{{ticket.purchaser}}</div>
+    </div>
+    <div class="ticket-info ticket-timestamp">
+        <span>Purchase Date:</span>
+        <div>{{ticket.purchase_datetime}}</div>
+    </div>
+    <div class="ticket-footer">
+        <p>Thank you for your purchase!</p>
+    </div>
+</div>
+{{/if}}

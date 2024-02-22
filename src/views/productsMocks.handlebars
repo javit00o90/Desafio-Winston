@@ -1,0 +1,20 @@
+<h1>Products Mocking</h1>
+
+<form action="/mockingproducts" method="GET">
+    <label for="productCount">Number of Products:</label>
+    <input type="number" id="productCount" name="count" value="100" min="1" max="1000">
+    <button type="submit">Generate</button>
+</form>
+
+<div id="productosContainerHome">
+    {{#each products}}
+        <div class="productCard">
+            <img src="{{this.thumbnail}}" alt="Product Image">
+            <h2>{{this.title}}</h2>
+            <p>{{this.description}}</p>
+            <p>Category: {{this.category}}</p>
+            <p>Price: ${{this.price}}</p>
+            <p>Stock: {{this.stock}}</p>
+        </div>
+    {{/each}}
+</div>

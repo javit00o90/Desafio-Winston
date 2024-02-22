@@ -1,0 +1,32 @@
+<h1>Products</h1>
+<br>
+
+<form action="/" method="get">
+  <label for="limit">Number of products to show: </label>
+  <input type="number" name="limit" id="limit" value="{{currentLimit}}" min="1" max="100">
+  <button type="submit">Apply</button>
+</form>
+
+
+<div id="productosContainerHome">
+    {{#each products.payload}}
+        <div class="productCard">
+            <h2>{{this.title}}</h2>
+            <p>Price: ${{this.price}}</p>
+            <p>Stock: {{this.stock}}</p>
+            <p>{{this.description}}</p>
+        </div>
+    {{/each}}
+</div>
+
+<div>
+    {{#if products.hasPrevPage}}
+        <a href="?page={{products.prevPage}}&limit={{currentLimit}}">Previous</a>
+    {{/if}}
+
+    Page {{products.page}} of {{products.totalPages}}
+
+    {{#if products.hasNextPage}}
+        <a href="?page={{products.nextPage}}&limit={{currentLimit}}">Next</a>
+    {{/if}}
+</div>

@@ -1,0 +1,19 @@
+<h2>Login User:</h2>
+<hr>
+<form action="/api/sessions/login" method="post">
+
+    {{#if error}}
+        <div style="color: red;">{{error}}</div>
+    {{/if}}
+
+    {{#if message}}
+        <div style="color: green;">{{message}}</div>
+    {{/if}}
+    
+    <input type="email" name="email" placeholder="email">
+    <input type="password" name="password" placeholder="password">
+    <br>
+    <input type="submit" value="Login">
+    <div class="githubButton"><a href="/api/sessions/github"><img src="../img/githubButton.png" alt=""></a></div>
+    
+</form>

@@ -1,0 +1,60 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Ecommerce Javi</title>
+</head>
+
+<body>
+    {{#if session.user}}
+    <div class="user-info">
+        <p>Bienvenido,
+            {{session.user.first_name}}
+            {{session.user.last_name}}.</p>
+        <p>Email: {{session.user.email}}</p>
+        <p>Role: {{session.user.role}}</p>
+    </div>
+    <a href="/">
+        <h3>Home</h3>
+    </a>
+    <a href="/products">
+        <h3>Products</h3>
+    </a>
+    <a href="/realtimeproducts">
+        <h3>RealTimeProducts</h3>
+    </a>
+    <a href="/mockingproducts">
+        <h3>Product Mocking</h3>
+    </a>
+    {{#if (eq session.user.role "user")}}
+    <a href="/chat">
+        <h3>Chat</h3>
+    </a>
+    {{/if}}
+    <a href="/profile">
+        <h3>Profile</h3>
+    </a>
+    <a href="/api/sessions/logout" class="logout">
+        <h3>Logout</h3>
+    </a>
+    <a href="/loggertest">
+        <h3>LoggerTest</h3>
+    </a>
+    {{else}}
+    <a href="/">
+        <h3>Home</h3>
+    </a>
+    <a href="/register">
+        <h3>Register</h3>
+    </a>
+    <a href="/login">
+        <h3>Login</h3>
+    </a>
+    {{/if}}
+
+    {{{body}}}
+</body>
+
+</html>

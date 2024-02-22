@@ -1,0 +1,11 @@
+<p>Test FATAL <button onclick="changeLevel('fatal')" style="background-color: red;">TEST</button></p>
+<p>Test ERROR <button onclick="changeLevel('error')" style="background-color: red;">TEST</button></p>
+<p>Test WARNING <button onclick="changeLevel('warning')" style="background-color: yellow;"><span style="color: black;">TEST</span></button></p>
+<p>Test INFO <button onclick="changeLevel('info')" style="background-color: green;">TEST</button></p>
+<p>Test HTTP <button onclick="changeLevel('http')" style="background-color: cyan;"><span style="color: black;">TEST</span></button></p>
+<p>Test DEBUG <button onclick="changeLevel('debug')" style="background-color: blue;">TEST</button></p>
+
+
+<script>
+  function changeLevel(level) { window.location.href = "?level=" + level; }
+</script>

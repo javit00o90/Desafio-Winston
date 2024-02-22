@@ -1,0 +1,20 @@
+<h1>Cart</h1>
+{{#if cart.products.length}}
+<ul>
+    {{#each cart.products}}
+    <li>
+        <strong>{{this._id.title}}</strong>
+        <p>Description: {{this._id.description}}</p>
+        <p>Price: {{this._id.price}}</p>
+        <p>Quantity: {{this.quantity}}</p>
+    </li>
+    {{/each}}
+</ul>
+<button type="submit" id="purchaseBtn" data-cart-id="{{cart._id}}">Purchase</button>
+<button type="submit" id="clearCartBtn" data-cart-id="{{cart._id}}">Clear Cart</button>
+{{else}}
+<p>Your cart is empty!</p>
+{{/if}}
+<div id="purchaseResponse"></div>
+
+<script src="/js/cartPurchaseScripts.js"></script>
